@@ -29,6 +29,9 @@ import CompanyCreate from './companies/CompanyCreate.tsx';
 import IntroductionsReportPage from './reports/IntroductionsReportPage.tsx';
 import LostButTrackPage from './reports/LostButTrackPage.tsx';
 import GroupEventEdit from './events/GroupEventEdit.tsx';
+import LeadList from './leads/LeadList.tsx';
+import LeadCreate from './leads/LeadCreate.tsx';
+import LeadEdit from './leads/LeadEdit.tsx';
 
 export const AppAdmin = () => (
   <Admin
@@ -94,6 +97,7 @@ export const AppAdmin = () => (
 
     <Resource name="companies" list={CompanyList} edit={CompanyEdit} create={CompanyCreate} />
 
+    <Resource name="leads" list={LeadList} edit={LeadEdit} create={LeadCreate} />
     <Resource name="contacts" list={ContactList} edit={ContactEdit} create={ContactCreate} />
     <Resource name="groups" list={GroupList} edit={GroupEdit} create={GroupCreate} />
     <Resource name="group-events" edit={GroupEventEdit} />
