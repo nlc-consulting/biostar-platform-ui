@@ -39,14 +39,7 @@ export const AppAdmin = () => (
     layout={CustomLayout}
   >
     <CustomRoutes>
-      <Route
-        path="/"
-        element={
-          <Authenticated>
-            <DashboardPage />
-          </Authenticated>
-        }
-      />
+
       <Route
         path="/"
         element={
@@ -98,6 +91,7 @@ export const AppAdmin = () => (
         }
       />
     </CustomRoutes>
+
     <Resource name="companies" list={CompanyList} edit={CompanyEdit} create={CompanyCreate} />
 
     <Resource name="contacts" list={ContactList} edit={ContactEdit} create={ContactCreate} />
