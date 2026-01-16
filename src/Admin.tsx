@@ -32,6 +32,7 @@ import GroupEventEdit from './events/GroupEventEdit.tsx';
 import LeadList from './leads/LeadList.tsx';
 import LeadCreate from './leads/LeadCreate.tsx';
 import LeadEdit from './leads/LeadEdit.tsx';
+import LeadShow from './leads/LeadShow.tsx';
 
 export const AppAdmin = () => (
   <Admin
@@ -97,7 +98,7 @@ export const AppAdmin = () => (
 
     <Resource name="companies" list={CompanyList} edit={CompanyEdit} create={CompanyCreate} />
 
-    <Resource name="leads" list={LeadList} edit={LeadEdit} create={LeadCreate} />
+    <Resource name="leads" list={LeadList} edit={LeadEdit} create={LeadCreate} show={LeadShow} />
     <Resource name="contacts" list={ContactList} edit={ContactEdit} create={ContactCreate} />
     <Resource name="groups" list={GroupList} edit={GroupEdit} create={GroupCreate} />
     <Resource name="group-events" edit={GroupEventEdit} />
