@@ -30,7 +30,7 @@ export const FloatingToolbar = () => {
         position: 'fixed',
         top: 100,
         right: 24,
-        display: 'flex',
+        display: { xs: 'none', sm: 'flex' },
         flexDirection: 'column',
         gap: 1,
         p: 2,
