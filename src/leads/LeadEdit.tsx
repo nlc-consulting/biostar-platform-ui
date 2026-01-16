@@ -8,7 +8,7 @@ import {
   SimpleForm,
   TextInput
 } from 'react-admin';
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Divider, Grid, Typography } from '@mui/material';
 import StateSelectInput from '../components/StateSelectInput.tsx';
 import { LEAD_STATUS_CHOICES } from '../types/LeadStatusChoices.ts';
 import { FormattedPhoneInput } from '../components/ra-forms/FormattedPhoneInput.tsx';
@@ -39,6 +39,8 @@ const LeadEdit: React.FC = () => {
               </Grid>
             </Grid>
 
+            <Divider sx={{ my: 3 }} />
+
             <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
               Property Address
             </Typography>
@@ -56,6 +58,8 @@ const LeadEdit: React.FC = () => {
                 <TextInput source="propertyZip" label="ZIP" helperText={false} />
               </Grid>
             </Grid>
+
+            <Divider sx={{ my: 3 }} />
 
             <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
               Lead Details
@@ -109,6 +113,8 @@ const LeadEdit: React.FC = () => {
               </Grid>
             </Grid>
 
+            <Divider sx={{ my: 3 }} />
+
             <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
               Insurance Information
             </Typography>
@@ -123,6 +129,8 @@ const LeadEdit: React.FC = () => {
                 <TextInput source="claimNumber" label="Claim Number" helperText={false} />
               </Grid>
             </Grid>
+
+            <Divider sx={{ my: 3 }} />
 
             <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
               Adjusters
@@ -171,6 +179,8 @@ const LeadEdit: React.FC = () => {
                 />
               </Grid>
             </Grid>
+
+            <Divider sx={{ my: 3 }} />
 
             <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
               Inspection & Estimate
