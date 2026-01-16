@@ -13,6 +13,7 @@ import StateSelectInput from '../components/StateSelectInput.tsx';
 import { LEAD_STATUS_CHOICES } from '../types/LeadStatusChoices.ts';
 import { FormattedPhoneInput } from '../components/ra-forms/FormattedPhoneInput.tsx';
 import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
+import { LEAD_SOURCE_CHOICES } from '../types/LeadSourceChoices.ts';
 
 const LeadEdit: React.FC = () => {
   return (
@@ -61,7 +62,12 @@ const LeadEdit: React.FC = () => {
             </Typography>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, sm: 6 }}>
-                <TextInput source="leadSource" label="Lead Source" helperText={false} />
+                <SelectInput
+                  source="leadSource"
+                  label="Lead Source"
+                  choices={LEAD_SOURCE_CHOICES}
+                  helperText={false}
+                />
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
                 <DateInput
