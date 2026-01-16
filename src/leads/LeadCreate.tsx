@@ -12,6 +12,7 @@ import { Container, Grid, Typography } from '@mui/material';
 import StateSelectInput from '../components/StateSelectInput.tsx';
 import { LEAD_STATUS_CHOICES } from '../types/LeadStatusChoices.ts';
 import { FormattedPhoneInput } from '../components/ra-forms/FormattedPhoneInput.tsx';
+import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
 
 const LeadCreate: React.FC = () => {
   return (
@@ -77,7 +78,12 @@ const LeadCreate: React.FC = () => {
                 />
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
-                <TextInput source="lossType" label="Type of Loss" helperText={false} />
+                <SelectInput
+                  source="lossType"
+                  label="Type of Loss"
+                  choices={LOSS_TYPE_CHOICES}
+                  helperText={false}
+                />
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
                 <SelectInput
