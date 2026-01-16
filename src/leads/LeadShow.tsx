@@ -3,10 +3,18 @@ import { Show, SimpleShowLayout, WithRecord } from 'react-admin';
 import { Container, Divider, Grid, Typography } from '@mui/material';
 import { formatCurrency, formatDate } from '../utils/helperUtils.ts';
 import FieldRow from '../components/FieldRow.tsx';
+import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 
 const LeadShow: React.FC = () => {
   return (
     <Container maxWidth="lg">
+      <BreadcrumbsNav
+        items={[
+          { label: 'Dashboard', to: '/' },
+          { label: 'Leads', to: '/leads' },
+          { label: 'View' }
+        ]}
+      />
       <Show>
         <SimpleShowLayout>
           <WithRecord

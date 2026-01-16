@@ -14,10 +14,18 @@ import { LEAD_STATUS_CHOICES } from '../types/LeadStatusChoices.ts';
 import { FormattedPhoneInput } from '../components/ra-forms/FormattedPhoneInput.tsx';
 import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
 import { LEAD_SOURCE_CHOICES } from '../types/LeadSourceChoices.ts';
+import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 
 const LeadCreate: React.FC = () => {
   return (
     <Container maxWidth="lg">
+      <BreadcrumbsNav
+        items={[
+          { label: 'Dashboard', to: '/' },
+          { label: 'Leads', to: '/leads' },
+          { label: 'Create' }
+        ]}
+      />
       <Create mutationMode="pessimistic">
         <SimpleForm
           defaultValues={{
