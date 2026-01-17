@@ -1,4 +1,5 @@
 import { Admin, Authenticated, CustomRoutes, defaultTheme, Resource } from 'react-admin';
+import { createTheme } from '@mui/material/styles';
 import ContactList from './contacts/ContactList';
 import ContactEdit from './contacts/ContactEdit';
 import ContactCreate from './contacts/ContactCreate';
@@ -29,13 +30,34 @@ import CompanyCreate from './companies/CompanyCreate.tsx';
 import IntroductionsReportPage from './reports/IntroductionsReportPage.tsx';
 import LostButTrackPage from './reports/LostButTrackPage.tsx';
 import GroupEventEdit from './events/GroupEventEdit.tsx';
+import LeadList from './leads/LeadList.tsx';
+import LeadCreate from './leads/LeadCreate.tsx';
+import LeadEdit from './leads/LeadEdit.tsx';
+import LeadShow from './leads/LeadShow.tsx';
+import LoginPage from './LoginPage.tsx';
+
+const theme = createTheme({
+  ...defaultTheme,
+  palette: {
+    ...defaultTheme.palette,
+    primary: {
+      ...defaultTheme.palette?.primary,
+      main: '#204487'
+    },
+    secondary: {
+      ...defaultTheme.palette?.secondary,
+      main: '#204487'
+    }
+  }
+});
 
 export const AppAdmin = () => (
   <Admin
     dataProvider={dataProvider}
     dashboard={DashboardPage}
     authProvider={authProvider}
-    theme={defaultTheme}
+    theme={theme}
+    loginPage={LoginPage}
     layout={CustomLayout}
   >
     <CustomRoutes>
@@ -94,6 +116,7 @@ export const AppAdmin = () => (
 
     <Resource name="companies" list={CompanyList} edit={CompanyEdit} create={CompanyCreate} />
 
+    <Resource name="leads" list={LeadList} edit={LeadEdit} create={LeadCreate} show={LeadShow} />
     <Resource name="contacts" list={ContactList} edit={ContactEdit} create={ContactCreate} />
     <Resource name="groups" list={GroupList} edit={GroupEdit} create={GroupCreate} />
     <Resource name="group-events" edit={GroupEventEdit} />

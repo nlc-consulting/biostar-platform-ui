@@ -48,3 +48,19 @@ export function formatInternationalPhoneNumber(raw: string): string {
 export function parsePhoneNumberInput(raw: string): string {
   return raw.replace(/[^\d+\s]/g, '');
 }
+
+export function formatDate(value?: string | Date | null): string {
+  if (!value) return '-';
+  const date = typeof value === 'string' ? new Date(value) : value;
+  if (Number.isNaN(date.getTime())) return '-';
+  return date.toLocaleDateString();
+}
+
+export function formatCurrency(value?: number | null): string {
+  if (value === null || value === undefined) return '-';
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 2,
+  }).format(value);
+}

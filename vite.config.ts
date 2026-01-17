@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     sentryVitePlugin({
       org: 'nlc-xw',
-      project: 'forge-react'
+      project: 'biostar-react'
     })
   ],
 
