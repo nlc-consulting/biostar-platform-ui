@@ -2,14 +2,13 @@ import React from 'react';
 import {
   BooleanInput,
   DateInput,
-  DeleteButton,
   Edit,
   NumberInput,
   SelectInput,
   SimpleForm,
   TextInput
 } from 'react-admin';
-import { Box, Container, Divider, Grid, Typography } from '@mui/material';
+import { Container, Divider, Grid, Typography } from '@mui/material';
 import StateSelectInput from '../components/StateSelectInput.tsx';
 import { LEAD_STATUS_CHOICES } from '../types/LeadStatusChoices.ts';
 import { FormattedPhoneInput } from '../components/ra-forms/FormattedPhoneInput.tsx';
@@ -235,13 +234,6 @@ const LeadEdit: React.FC = () => {
                 helperText={false}
               />
             </Grid>
-            <Box display="flex" justifyContent="flex-end" mt={3}>
-              <DeleteButton
-                mutationMode="pessimistic"
-                confirmTitle="Delete lead?"
-                confirmContent="This will permanently remove the lead."
-              />
-            </Box>
           </Container>
         </SimpleForm>
       </Edit>
