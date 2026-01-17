@@ -27,7 +27,7 @@ const LeadCreate: React.FC = () => {
           { label: 'Create' }
         ]}
       />
-      <Create mutationMode="pessimistic">
+      <Create mutationMode="pessimistic" redirect="list">
         <SimpleForm
           defaultValues={{
             status: 'NEW',
