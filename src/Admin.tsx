@@ -34,6 +34,7 @@ import LeadList from './leads/LeadList.tsx';
 import LeadCreate from './leads/LeadCreate.tsx';
 import LeadEdit from './leads/LeadEdit.tsx';
 import LeadShow from './leads/LeadShow.tsx';
+import LoginPage from './LoginPage.tsx';
 
 const theme = createTheme({
   ...defaultTheme,
@@ -56,6 +57,7 @@ export const AppAdmin = () => (
     dashboard={DashboardPage}
     authProvider={authProvider}
     theme={theme}
+    loginPage={LoginPage}
     layout={CustomLayout}
   >
     <CustomRoutes>
