@@ -218,27 +218,16 @@ const LeadCreate: React.FC = () => {
                   step={0.01}
                 />
               </Grid>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <DateInput
-                  source="estimateTotalUpdatedAt"
-                  label="Estimate Updated"
-                  helperText={false}
-                  format={(v) => (v && v.includes('T') ? v.split('T')[0] : v)}
-                  parse={(v) => (v ? v : null)}
-                />
-              </Grid>
-            </Grid>
-
-            <Grid size={{ xs: 12 }} sx={{ mt: 3 }}>
-              <TextInput
-                source="notes"
-                label="Notes"
-                multiline
-                rows={4}
-                fullWidth
+            <Grid size={{ xs: 12, sm: 6 }}>
+              <DateInput
+                source="estimateTotalUpdatedAt"
+                label="Estimate Updated"
                 helperText={false}
+                format={(v) => (v && v.includes('T') ? v.split('T')[0] : v)}
+                parse={(v) => (v ? v : null)}
               />
             </Grid>
+          </Grid>
           </Container>
         </SimpleForm>
       </Create>
