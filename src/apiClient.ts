@@ -90,7 +90,11 @@ export const authFetchJson = (url: string, options: fetchUtils.Options = {}) => 
       throw error;
     }
     const retryHeaders = withAuthHeaders(options.headers);
-    return fetchUtils.fetchJson(url, { ...options, headers: retryHeaders });
+    try {
+      return await fetchUtils.fetchJson(url, { ...options, headers: retryHeaders });
+    } catch (retryError) {
+      throw retryError;
+    }
   });
 };
 

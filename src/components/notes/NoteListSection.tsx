@@ -21,7 +21,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { API_BASE_URL, authFetch } from '../../apiClient.ts';
 
-export type NoteEntityType = 'CONTACT' | 'GROUP' | 'OPPORTUNITY' | 'COMPANY';
+export type NoteEntityType = 'CONTACT' | 'GROUP' | 'OPPORTUNITY' | 'COMPANY' | 'LEAD';
 
 export type INote = {
   id: number;
@@ -37,9 +37,10 @@ export type INote = {
 type NoteListSectionProps = {
   entityType: NoteEntityType;
   entityIdField?: string | undefined;
+  hideTitle?: boolean;
 };
 
-export const NoteListSection = ({ entityType, entityIdField = 'id' }: NoteListSectionProps) => {
+export const NoteListSection = ({ entityType, entityIdField = 'id', hideTitle= false }: NoteListSectionProps) => {
   const notify = useNotify();
   const refresh = useRefresh();
   const [body, setBody] = useState('');
@@ -91,9 +92,12 @@ export const NoteListSection = ({ entityType, entityIdField = 'id' }: NoteListSe
     <ResourceContextProvider value="notes">
       <ListContextProvider value={listContext}>
         <Box>
-          <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+          {!hideTitle && (
+              <Typography variant="subtitle1" fontWeight={600} gutterBottom>
             Notes
-          </Typography>
+          </Typography>)
+          }
+
 
           <Box
             sx={{
@@ -166,4 +170,4 @@ export const NoteListSection = ({ entityType, entityIdField = 'id' }: NoteListSe
       </ListContextProvider>
     </ResourceContextProvider>
   );
-};
+}

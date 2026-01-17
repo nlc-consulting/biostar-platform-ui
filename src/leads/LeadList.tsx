@@ -3,6 +3,7 @@ import {
   BooleanField,
   Datagrid,
   DateField,
+  DeleteButton,
   EditButton,
   List,
   ShowButton,
@@ -24,7 +25,7 @@ const LeadList: React.FC = () => {
         ]}
       />
       <List filters={leadFilters} sort={{ field: 'createdAt', order: 'DESC' }}>
-        <Datagrid rowClick="show">
+        <Datagrid rowClick="show" bulkActionButtons={false}>
           <TextField source="firstName" label="First" />
           <TextField source="lastName" label="Last" />
           <TextField source="phone" label="Phone" />
@@ -34,6 +35,7 @@ const LeadList: React.FC = () => {
           <DateField source="receivedAt" label="Received" />
           <ShowButton />
           <EditButton />
+          <DeleteButton mutationMode="pessimistic" />
         </Datagrid>
       </List>
     </Container>

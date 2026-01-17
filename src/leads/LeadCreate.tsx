@@ -15,6 +15,7 @@ import { FormattedPhoneInput } from '../components/ra-forms/FormattedPhoneInput.
 import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
 import { LEAD_SOURCE_CHOICES } from '../types/LeadSourceChoices.ts';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
+import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
 
 const LeadCreate: React.FC = () => {
   return (
@@ -26,13 +27,14 @@ const LeadCreate: React.FC = () => {
           { label: 'Create' }
         ]}
       />
-      <Create mutationMode="pessimistic">
+      <Create mutationMode="pessimistic" redirect="list">
         <SimpleForm
           defaultValues={{
             status: 'NEW',
             receivedAt: new Date().toISOString().split('T')[0]
           }}
         >
+          <FloatingToolbar />
           <Container maxWidth="md">
             <Typography variant="h6" gutterBottom>
               Contact Information
@@ -216,27 +218,16 @@ const LeadCreate: React.FC = () => {
                   step={0.01}
                 />
               </Grid>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <DateInput
-                  source="estimateTotalUpdatedAt"
-                  label="Estimate Updated"
-                  helperText={false}
-                  format={(v) => (v && v.includes('T') ? v.split('T')[0] : v)}
-                  parse={(v) => (v ? v : null)}
-                />
-              </Grid>
-            </Grid>
-
-            <Grid size={{ xs: 12 }} sx={{ mt: 3 }}>
-              <TextInput
-                source="notes"
-                label="Notes"
-                multiline
-                rows={4}
-                fullWidth
+            <Grid size={{ xs: 12, sm: 6 }}>
+              <DateInput
+                source="estimateTotalUpdatedAt"
+                label="Estimate Updated"
                 helperText={false}
+                format={(v) => (v && v.includes('T') ? v.split('T')[0] : v)}
+                parse={(v) => (v ? v : null)}
               />
             </Grid>
+          </Grid>
           </Container>
         </SimpleForm>
       </Create>
