@@ -34,6 +34,8 @@ import LeadList from './leads/LeadList.tsx';
 import LeadCreate from './leads/LeadCreate.tsx';
 import LeadEdit from './leads/LeadEdit.tsx';
 import LeadShow from './leads/LeadShow.tsx';
+import UserList from './users/UserList.tsx';
+import UserCreate from './users/UserCreate.tsx';
 import LoginPage from './LoginPage.tsx';
 
 const theme = createTheme({
@@ -130,5 +132,6 @@ export const AppAdmin = () => (
     <Resource name="projects" list={ProjectList} edit={ProjectEdit} create={ProjectCreate} />
     <Resource name="project-contacts" edit={ProjectContactEdit} />
     <Resource name="programs" list={ProgramList} edit={ProgramEdit} create={ProgramCreate} />
+    <Resource name="users" list={UserList} create={UserCreate} />
   </Admin>
 );
