@@ -30,7 +30,7 @@ const LeadEdit: React.FC = () => {
         ]}
       />
       <Edit mutationMode="pessimistic">
-        <TabbedForm>
+        <TabbedForm syncWithLocation={false}>
           <FormTab label="Details">
             <FloatingToolbar />
             <Container maxWidth="md">

@@ -17,7 +17,7 @@ const LeadShow: React.FC = () => {
         ]}
       />
       <Show>
-        <TabbedShowLayout>
+        <TabbedShowLayout syncWithLocation={false}>
           <Tab label="Details">
             <WithRecord
               render={(record) => (
