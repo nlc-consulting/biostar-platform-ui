@@ -1,10 +1,12 @@
-import { Box, CircularProgress, Link as MuiLink } from '@mui/material';
+import { Box, CircularProgress, IconButton, Link as MuiLink } from '@mui/material';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { API_BASE_URL, authFetchJson } from '../../apiClient.ts';
 import { Link as RouterLink } from 'react-router-dom';
 import type { LeadRow } from '../../types/LeadRow.ts';
 import { formatDate } from '../../utils/helperUtils.ts';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 interface Props {
   days?: number;
@@ -52,6 +54,34 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         headerName: 'Received',
         width: 130,
         valueGetter: (_, row) => formatDate(row.receivedAt || row.createdAt)
+      },
+      {
+        field: 'actions',
+        headerName: '',
+        width: 90,
+        sortable: false,
+        renderCell: (params) => (
+          <Box display="flex" alignItems="center" gap={0.5}>
+            <IconButton
+              size="small"
+              component={RouterLink}
+              to={`/leads/${params.row.id}`}
+              aria-label="View lead"
+              color="primary"
+            >
+              <VisibilityOutlinedIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              size="small"
+              component={RouterLink}
+              to={`/leads/${params.row.id}/edit`}
+              aria-label="Edit lead"
+              color="primary"
+            >
+              <EditOutlinedIcon fontSize="small" />
+            </IconButton>
+          </Box>
+        )
       }
     ],
     []
