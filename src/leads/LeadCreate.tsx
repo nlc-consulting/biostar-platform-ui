@@ -15,6 +15,7 @@ import { FormattedPhoneInput } from '../components/ra-forms/FormattedPhoneInput.
 import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
 import { LEAD_SOURCE_CHOICES } from '../types/LeadSourceChoices.ts';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
+import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
 
 const LeadCreate: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const LeadCreate: React.FC = () => {
             receivedAt: new Date().toISOString().split('T')[0]
           }}
         >
+          <FloatingToolbar />
           <Container maxWidth="md">
             <Typography variant="h6" gutterBottom>
               Contact Information
