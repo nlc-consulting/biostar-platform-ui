@@ -1,6 +1,7 @@
 import { fetchUtils, HttpError } from 'react-admin';
 
 export const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+console.log('API_BASE_URL', API_BASE_URL);
 
 export const getAuthToken = () => localStorage.getItem('auth');
 export const getRefreshToken = () => localStorage.getItem('refresh');
