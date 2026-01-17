@@ -25,6 +25,9 @@ const DashboardPage = () => {
                 Recent Leads (Last 7 Days)
               </Typography>
               <Stack direction="row" spacing={1} alignItems="center">
+                <Button variant="contained" size="small" component={RouterLink} to="/leads/create">
+                  Create Lead
+                </Button>
                 <Button variant="outlined" size="small" component={RouterLink} to="/leads">
                   View All Leads
                 </Button>
