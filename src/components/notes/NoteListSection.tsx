@@ -40,7 +40,11 @@ type NoteListSectionProps = {
   hideTitle?: boolean;
 };
 
-export const NoteListSection = ({ entityType, entityIdField = 'id', hideTitle= false }: NoteListSectionProps) => {
+export const NoteListSection = ({
+  entityType,
+  entityIdField = 'id',
+  hideTitle = false,
+}: NoteListSectionProps) => {
   const notify = useNotify();
   const refresh = useRefresh();
   const [body, setBody] = useState('');
@@ -93,11 +97,10 @@ export const NoteListSection = ({ entityType, entityIdField = 'id', hideTitle= f
       <ListContextProvider value={listContext}>
         <Box>
           {!hideTitle && (
-              <Typography variant="subtitle1" fontWeight={600} gutterBottom>
-            Notes
-          </Typography>)
-          }
-
+            <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+              Notes
+            </Typography>
+          )}
 
           <Box
             sx={{

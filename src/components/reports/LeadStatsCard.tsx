@@ -1,7 +1,6 @@
 import { Card, CardContent, Grid, Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { API_BASE_URL, authFetchJson } from '../../apiClient.ts';
-import type { LeadRow } from '../../types/LeadRow.ts';
 
 interface Props {
   days?: number;
@@ -13,41 +12,11 @@ const LeadStatsCard = ({ days = 7 }: Props) => {
   const [yesterdayCount, setYesterdayCount] = useState(0);
 
   useEffect(() => {
-    authFetchJson(`${API_BASE_URL}/dashboard/recent-leads?days=${days}`)
+    authFetchJson(`${API_BASE_URL}/dashboard/lead-stats?days=${days}`)
       .then(({ json }) => {
-        const rows = Array.isArray(json) ? (json as LeadRow[]) : [];
-        setTotal(rows.length);
-
-        const today = new Date();
-        const startOfToday = new Date(
-          today.getFullYear(),
-          today.getMonth(),
-          today.getDate()
-        );
-        const startOfYesterday = new Date(startOfToday);
-        startOfYesterday.setDate(startOfYesterday.getDate() - 1);
-
-        let todayHits = 0;
-        let yesterdayHits = 0;
-
-        rows.forEach((row) => {
-          const dateValue = row.receivedAt || row.createdAt;
-          if (!dateValue) {
-            return;
-          }
-          const leadDate = new Date(dateValue);
-          if (Number.isNaN(leadDate.getTime())) {
-            return;
-          }
-          if (leadDate >= startOfToday) {
-            todayHits += 1;
-          } else if (leadDate >= startOfYesterday && leadDate < startOfToday) {
-            yesterdayHits += 1;
-          }
-        });
-
-        setTodayCount(todayHits);
-        setYesterdayCount(yesterdayHits);
+        setTotal(json.total ?? 0);
+        setTodayCount(json.today ?? 0);
+        setYesterdayCount(json.yesterday ?? 0);
       })
       .catch((error) => {
         console.error('Failed to load lead stats', error);

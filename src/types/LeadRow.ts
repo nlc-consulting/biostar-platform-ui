@@ -9,4 +9,6 @@ export type LeadRow = {
   status: string;
   receivedAt: string | null;
   createdAt: string;
+  notesCount: number;
+  documentsCount: number;
 };
