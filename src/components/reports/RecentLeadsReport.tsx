@@ -36,29 +36,9 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
   const columns = useMemo<GridColDef[]>(
     () => [
       {
-        field: 'leadName',
-        headerName: 'Lead',
-        width: 220,
-        valueGetter: (_, row) => `${row.firstName ?? ''} ${row.lastName ?? ''}`.trim(),
-        renderCell: (params) => (
-          <MuiLink component={RouterLink} to={`/leads/${params.row.id}`} underline="hover">
-            {params.value}
-          </MuiLink>
-        )
-      },
-      { field: 'leadSource', headerName: 'Source', width: 130 },
-      { field: 'lossType', headerName: 'Loss Type', width: 130 },
-      { field: 'status', headerName: 'Status', width: 110 },
-      {
-        field: 'receivedAt',
-        headerName: 'Received',
-        width: 130,
-        valueGetter: (_, row) => formatDate(row.receivedAt || row.createdAt)
-      },
-      {
         field: 'actions',
         headerName: '',
-        width: 90,
+        width: 80,
         sortable: false,
         renderCell: (params) => (
           <Box display="flex" alignItems="center" gap={0.5}>
@@ -82,7 +62,30 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
             </IconButton>
           </Box>
         )
-      }
+      },
+      {
+        field: 'leadName',
+        headerName: 'Lead',
+        width: 180,
+        valueGetter: (_, row) => `${row.firstName ?? ''} ${row.lastName ?? ''}`.trim(),
+        renderCell: (params) => (
+          <MuiLink component={RouterLink} to={`/leads/${params.row.id}`} underline="hover">
+            {params.value}
+          </MuiLink>
+        )
+      },
+      { field: 'leadSource', headerName: 'Source', width: 130 },
+      { field: 'lossType', headerName: 'Loss Type', width: 130 },
+      { field: 'status', headerName: 'Status', width: 110 },
+      { field: 'notesCount', headerName: 'Notes', width: 90 },
+      { field: 'documentsCount', headerName: 'Docs', width: 90 },
+      {
+        field: 'receivedAt',
+        headerName: 'Received',
+        width: 130,
+        valueGetter: (_, row) => formatDate(row.receivedAt || row.createdAt)
+      },
+      
     ],
     []
   );
