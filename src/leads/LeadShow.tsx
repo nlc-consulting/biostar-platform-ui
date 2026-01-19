@@ -5,6 +5,7 @@ import { formatCurrency, formatDate } from '../utils/helperUtils.ts';
 import FieldRow from '../components/FieldRow.tsx';
 import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
+import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
 
 const LeadShow: React.FC = () => {
   return (
@@ -176,6 +177,11 @@ const LeadShow: React.FC = () => {
           <Tab label="Notes">
             <Container maxWidth="md">
               <NoteListSection entityType="LEAD" hideTitle={true} />
+            </Container>
+          </Tab>
+          <Tab label="Documents">
+            <Container maxWidth="md">
+              <DocumentListSection entityType="LEAD" hideTitle={true} />
             </Container>
           </Tab>
         </TabbedShowLayout>

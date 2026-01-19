@@ -18,6 +18,7 @@ import { LEAD_SOURCE_CHOICES } from '../types/LeadSourceChoices.ts';
 import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { NoteListSection } from '../components/notes/NoteListSection.tsx';
+import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
 
 const LeadEdit: React.FC = () => {
   return (
@@ -231,6 +232,11 @@ const LeadEdit: React.FC = () => {
           <FormTab label="Notes">
             <Container maxWidth="md">
               <NoteListSection entityType="LEAD" hideTitle={true} />
+            </Container>
+          </FormTab>
+          <FormTab label="Documents">
+            <Container maxWidth="md">
+              <DocumentListSection entityType="LEAD" hideTitle={true} />
             </Container>
           </FormTab>
         </TabbedForm>
