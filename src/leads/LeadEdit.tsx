@@ -6,8 +6,10 @@ import {
   FormTab,
   NumberInput,
   SelectInput,
+  ShowButton,
   TabbedForm,
-  TextInput
+  TextInput,
+  TopToolbar
 } from 'react-admin';
 import { Container, Divider, Grid, Typography } from '@mui/material';
 import StateSelectInput from '../components/StateSelectInput.tsx';
@@ -21,6 +23,13 @@ import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
 import LeadConvertToProjectDialog from './components/LeadConvertToProjectDialog.tsx';
 
+const LeadEditActions = () => (
+  <TopToolbar>
+    <ShowButton />
+    <LeadConvertToProjectDialog />
+  </TopToolbar>
+);
+
 const LeadEdit: React.FC = () => {
   return (
     <Container maxWidth="lg">
@@ -31,12 +40,11 @@ const LeadEdit: React.FC = () => {
           { label: 'Manage' }
         ]}
       />
-      <Edit mutationMode="pessimistic">
+      <Edit mutationMode="pessimistic" actions={<LeadEditActions />}>
         <TabbedForm syncWithLocation={false}>
           <FormTab label="Details">
             <FloatingToolbar />
             <Container maxWidth="md">
-              <LeadConvertToProjectDialog />
               <Typography variant="h6" gutterBottom>
                 Contact Information
               </Typography>

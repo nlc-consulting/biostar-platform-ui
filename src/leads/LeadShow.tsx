@@ -1,5 +1,5 @@
 import React from 'react';
-import { Show, TabbedShowLayout, Tab, WithRecord } from 'react-admin';
+import { EditButton, Show, TabbedShowLayout, Tab, TopToolbar, WithRecord } from 'react-admin';
 import { Container, Divider, Grid, Typography } from '@mui/material';
 import { formatCurrency, formatDate } from '../utils/helperUtils.ts';
 import FieldRow from '../components/FieldRow.tsx';
@@ -7,6 +7,13 @@ import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
 import LeadConvertToProjectDialog from './components/LeadConvertToProjectDialog.tsx';
+
+const LeadShowActions = () => (
+  <TopToolbar>
+    <EditButton />
+    <LeadConvertToProjectDialog />
+  </TopToolbar>
+);
 
 const LeadShow: React.FC = () => {
   return (
@@ -18,13 +25,12 @@ const LeadShow: React.FC = () => {
           { label: 'View' }
         ]}
       />
-      <Show>
+      <Show actions={<LeadShowActions />}>
         <TabbedShowLayout syncWithLocation={false}>
           <Tab label="Details">
             <WithRecord
               render={(record) => (
                 <Container maxWidth="md">
-                  <LeadConvertToProjectDialog />
                   <Typography variant="h6" gutterBottom>
                     Contact Information
                   </Typography>

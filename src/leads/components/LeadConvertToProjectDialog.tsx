@@ -124,7 +124,7 @@ const LeadConvertToProjectDialog: React.FC = () => {
 
   return (
     <>
-      <Button variant="contained" onClick={() => setOpen(true)}>
+      <Button variant="contained" size="small" onClick={() => setOpen(true)}>
         Convert to Project
       </Button>
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
