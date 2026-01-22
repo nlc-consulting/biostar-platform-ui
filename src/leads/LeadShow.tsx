@@ -6,6 +6,7 @@ import FieldRow from '../components/FieldRow.tsx';
 import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
+import LeadConvertToProjectDialog from './components/LeadConvertToProjectDialog.tsx';
 
 const LeadShow: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const LeadShow: React.FC = () => {
             <WithRecord
               render={(record) => (
                 <Container maxWidth="md">
+                  <LeadConvertToProjectDialog />
                   <Typography variant="h6" gutterBottom>
                     Contact Information
                   </Typography>

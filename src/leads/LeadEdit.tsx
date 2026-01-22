@@ -19,6 +19,7 @@ import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
+import LeadConvertToProjectDialog from './components/LeadConvertToProjectDialog.tsx';
 
 const LeadEdit: React.FC = () => {
   return (
@@ -35,6 +36,7 @@ const LeadEdit: React.FC = () => {
           <FormTab label="Details">
             <FloatingToolbar />
             <Container maxWidth="md">
+              <LeadConvertToProjectDialog />
               <Typography variant="h6" gutterBottom>
                 Contact Information
               </Typography>
