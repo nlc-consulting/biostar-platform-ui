@@ -78,6 +78,8 @@ const RecentProjectsReport = memo<Props>(({ days = 7, limit = 10 }) => {
       },
       { field: 'status', headerName: 'Status', width: 120 },
       { field: 'lossType', headerName: 'Loss Type', width: 140 },
+      { field: 'notesCount', headerName: 'Notes', width: 90 },
+      { field: 'documentsCount', headerName: 'Docs', width: 90 },
       { field: 'propertyCity', headerName: 'City', width: 140 },
       {
         field: 'createdAt',
