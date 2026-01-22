@@ -1,7 +1,8 @@
 import { Menu, MenuItemLink } from 'react-admin';
 import {
   InsertChart,
-  People
+  People,
+  Person
 } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 
@@ -16,6 +17,12 @@ const CustomMenu = () => {
         primaryText="Leads"
         leftIcon={<InsertChart />}
         selected={location.pathname === '/leads'}
+      />
+      <MenuItemLink
+        to="/customers"
+        primaryText="Customers"
+        leftIcon={<Person />}
+        selected={location.pathname.startsWith('/customers')}
       />
       <MenuItemLink
         to="/users"
