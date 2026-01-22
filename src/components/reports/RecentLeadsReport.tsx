@@ -62,7 +62,7 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
             <IconButton
               size="small"
               component={RouterLink}
-              to={`/leads/${params.row.id}`}
+              to={`/leads/${params.row.id}/show`}
               aria-label="View lead"
               color="primary"
             >
@@ -125,6 +125,8 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         rows={rows}
         columns={columns}
         density="compact"
+        hideFooter
+        hideFooterPagination
         initialState={{
           sorting: {
             sortModel: [{ field: 'receivedAt', sort: 'desc' }]
@@ -132,11 +134,6 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         }}
         disableRowSelectionOnClick
       />
-      {totalCount > rows.length && (
-        <Box sx={{ mt: 1, color: 'text.secondary', fontSize: 12 }}>
-          Showing {rows.length} of {totalCount} leads
-        </Box>
-      )}
     </Box>
   );
 });

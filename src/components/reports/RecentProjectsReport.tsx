@@ -5,6 +5,7 @@ import { API_BASE_URL, authFetchJson } from '../../apiClient.ts';
 import { Link as RouterLink } from 'react-router-dom';
 import type { ProjectRow } from '../../types/ProjectRow.ts';
 import { formatDate } from '../../utils/helperUtils.ts';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 interface Props {
@@ -36,18 +37,29 @@ const RecentProjectsReport = memo<Props>(({ days = 7, limit = 10 }) => {
       {
         field: 'actions',
         headerName: '',
-        width: 60,
+        width: 80,
         sortable: false,
         renderCell: (params) => (
-          <IconButton
-            size="small"
-            component={RouterLink}
-            to={`/projects/${params.row.id}/edit`}
-            aria-label="Edit project"
-            color="primary"
-          >
-            <EditOutlinedIcon fontSize="small" />
-          </IconButton>
+          <Box display="flex" alignItems="center" gap={0.5}>
+            <IconButton
+              size="small"
+              component={RouterLink}
+              to={`/projects/${params.row.id}/show`}
+              aria-label="View project"
+              color="primary"
+            >
+              <VisibilityOutlinedIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              size="small"
+              component={RouterLink}
+              to={`/projects/${params.row.id}/edit`}
+              aria-label="Edit project"
+              color="primary"
+            >
+              <EditOutlinedIcon fontSize="small" />
+            </IconButton>
+          </Box>
         )
       },
       {
@@ -55,7 +67,7 @@ const RecentProjectsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         headerName: 'Project',
         width: 200,
         renderCell: (params) => (
-          <MuiLink component={RouterLink} to={`/projects/${params.row.id}/edit`} underline="hover">
+          <MuiLink component={RouterLink} to={`/projects/${params.row.id}/show`} underline="hover">
             {params.value}
           </MuiLink>
         )
@@ -89,6 +101,8 @@ const RecentProjectsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         rows={rows}
         columns={columns}
         density="compact"
+        hideFooter
+        hideFooterPagination
         initialState={{
           sorting: {
             sortModel: [{ field: 'createdAt', sort: 'desc' }]
@@ -96,11 +110,6 @@ const RecentProjectsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         }}
         disableRowSelectionOnClick
       />
-      {totalCount > rows.length && (
-        <Box sx={{ mt: 1, color: 'text.secondary', fontSize: 12 }}>
-          Showing {rows.length} of {totalCount} projects
-        </Box>
-      )}
     </Box>
   );
 });

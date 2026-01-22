@@ -1,5 +1,5 @@
 import React from 'react';
-import { Datagrid, DateField, EditButton, List, TextField, TextInput } from 'react-admin';
+import { Datagrid, DateField, EditButton, List, ShowButton, TextField, TextInput } from 'react-admin';
 import { Container } from '@mui/material';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 
@@ -23,6 +23,7 @@ const ProjectList: React.FC = () => {
           <TextField source="lossType" label="Loss Type" />
           <TextField source="propertyCity" label="City" />
           <DateField source="createdAt" label="Created" />
+          <ShowButton />
           <EditButton />
         </Datagrid>
       </List>
