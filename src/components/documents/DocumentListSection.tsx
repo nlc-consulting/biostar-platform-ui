@@ -17,7 +17,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { API_BASE_URL, authFetch } from '../../apiClient.ts';
 
-export type DocumentEntityType = 'LEAD' | 'CUSTOMER' | 'PROJECT' | 'GENERAL';
+export type DocumentEntityType = 'LEAD' | 'CUSTOMER' | 'GENERAL';
 
 export type IDocument = {
   id: number;
