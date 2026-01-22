@@ -19,8 +19,6 @@ import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
-import LeadCustomerSelect from './components/LeadCustomerSelect.tsx';
-import LeadCustomerAddressButton from './components/LeadCustomerAddressButton.tsx';
 
 const LeadEdit: React.FC = () => {
   return (
@@ -41,9 +39,6 @@ const LeadEdit: React.FC = () => {
                 Contact Information
               </Typography>
               <Grid container spacing={2}>
-                <Grid size={{ xs: 12 }}>
-                  <LeadCustomerSelect />
-                </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
                   <TextInput source="firstName" label="First Name" helperText={false} />
                 </Grid>
@@ -65,9 +60,6 @@ const LeadEdit: React.FC = () => {
                   <Typography variant="h6" gutterBottom>
                     Property Address
                   </Typography>
-                </Grid>
-                <Grid>
-                  <LeadCustomerAddressButton />
                 </Grid>
               </Grid>
               <Grid container spacing={2}>
