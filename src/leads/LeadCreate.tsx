@@ -17,6 +17,7 @@ import { LEAD_SOURCE_CHOICES } from '../types/LeadSourceChoices.ts';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
 import LeadCustomerSelect from './components/LeadCustomerSelect.tsx';
+import LeadCustomerAddressButton from './components/LeadCustomerAddressButton.tsx';
 
 const LeadCreate: React.FC = () => {
   return (
@@ -41,7 +42,7 @@ const LeadCreate: React.FC = () => {
               Contact Information
             </Typography>
             <Grid container spacing={2}>
-              <Grid size={{ xs: 12, sm: 6 }}>
+              <Grid size={{ xs: 12 }}>
                 <LeadCustomerSelect />
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
@@ -60,9 +61,16 @@ const LeadCreate: React.FC = () => {
 
             <Divider sx={{ my: 3 }} />
 
-            <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
-              Property Address
-            </Typography>
+            <Grid container alignItems="center" justifyContent="space-between" sx={{ mt: 3 }}>
+              <Grid>
+                <Typography variant="h6" gutterBottom>
+                  Property Address
+                </Typography>
+              </Grid>
+              <Grid>
+                <LeadCustomerAddressButton />
+              </Grid>
+            </Grid>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12 }}>
                 <TextInput source="propertyStreet" label="Street" helperText={false} fullWidth />
