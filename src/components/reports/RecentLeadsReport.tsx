@@ -17,14 +17,12 @@ interface Props {
 const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
   const [rows, setRows] = useState<LeadRow[]>([]);
   const [loading, setLoading] = useState(true);
-  const [totalCount, setTotalCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
     authFetchJson(`${API_BASE_URL}/dashboard/recent-leads?days=${days}`)
       .then(({ json }) => {
         const allRows = Array.isArray(json) ? json : [];
-        setTotalCount(allRows.length);
         const trimmed = allRows.slice(0, limit);
         setRows(trimmed);
         setLoading(false);

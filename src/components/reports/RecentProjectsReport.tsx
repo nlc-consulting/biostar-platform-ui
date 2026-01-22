@@ -16,13 +16,11 @@ interface Props {
 const RecentProjectsReport = memo<Props>(({ days = 7, limit = 10 }) => {
   const [rows, setRows] = useState<ProjectRow[]>([]);
   const [loading, setLoading] = useState(true);
-  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     authFetchJson(`${API_BASE_URL}/dashboard/recent-projects?days=${days}`)
       .then(({ json }) => {
         const allRows = Array.isArray(json) ? json : [];
-        setTotalCount(allRows.length);
         setRows(allRows.slice(0, limit));
         setLoading(false);
       })
