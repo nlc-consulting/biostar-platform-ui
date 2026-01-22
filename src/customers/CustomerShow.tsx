@@ -5,6 +5,7 @@ import FieldRow from '../components/FieldRow.tsx';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
+import CustomerProjectsSection from './components/CustomerProjectsSection.tsx';
 
 const CustomerShow: React.FC = () => {
   return (
@@ -62,6 +63,11 @@ const CustomerShow: React.FC = () => {
                 </Container>
               )}
             />
+          </Tab>
+          <Tab label="Projects">
+            <Container maxWidth="md">
+              <CustomerProjectsSection />
+            </Container>
           </Tab>
           <Tab label="Notes">
             <Container maxWidth="md">

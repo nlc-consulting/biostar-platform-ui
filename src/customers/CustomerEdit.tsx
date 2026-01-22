@@ -7,6 +7,7 @@ import { FormattedPhoneInput } from '../components/ra-forms/FormattedPhoneInput.
 import StateSelectInput from '../components/StateSelectInput.tsx';
 import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
+import CustomerProjectsSection from './components/CustomerProjectsSection.tsx';
 
 const CustomerEdit: React.FC = () => {
   return (
@@ -64,6 +65,11 @@ const CustomerEdit: React.FC = () => {
                   <TextInput source="primaryZip" label="ZIP" helperText={false} />
                 </Grid>
               </Grid>
+            </Container>
+          </FormTab>
+          <FormTab label="Projects">
+            <Container maxWidth="md">
+              <CustomerProjectsSection />
             </Container>
           </FormTab>
           <FormTab label="Notes">
