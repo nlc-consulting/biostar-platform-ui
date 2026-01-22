@@ -14,10 +14,6 @@ import OpportunityCreate from './opportunities/OpportunityCreate.tsx';
 import OpportunityEdit from './opportunities/OpportunityEdit.tsx';
 import { Route } from 'react-router-dom';
 import DashboardPage from './dashboard/Dashboard.tsx';
-import ProjectList from './projects/ProjectList.tsx';
-import ProjectEdit from './projects/ProjectEdit.tsx';
-import ProjectCreate from './projects/ProjectCreate.tsx';
-import ProjectContactEdit from './project-contacts/ProjectContactEdit.tsx';
 import { authProvider } from './authProvider.ts';
 import dataProvider from './dataProvider.ts';
 import CustomLayout from './CustomLayout.tsx';
@@ -140,8 +136,6 @@ export const AppAdmin = () => (
       edit={OpportunityEdit}
       create={OpportunityCreate}
     />
-    <Resource name="projects" list={ProjectList} edit={ProjectEdit} create={ProjectCreate} />
-    <Resource name="project-contacts" edit={ProjectContactEdit} />
     <Resource name="programs" list={ProgramList} edit={ProgramEdit} create={ProgramCreate} />
     <Resource name="users" list={UserList} create={UserCreate} />
   </Admin>
