@@ -1,12 +1,13 @@
 import { Box, CircularProgress, IconButton, Link as MuiLink } from '@mui/material';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { API_BASE_URL, authFetchJson } from '../../apiClient.ts';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import type { LeadRow } from '../../types/LeadRow.ts';
 import { formatDate } from '../../utils/helperUtils.ts';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 
 interface Props {
   days?: number;
@@ -16,13 +17,12 @@ interface Props {
 const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
   const [rows, setRows] = useState<LeadRow[]>([]);
   const [loading, setLoading] = useState(true);
-  const [totalCount, setTotalCount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     authFetchJson(`${API_BASE_URL}/dashboard/recent-leads?days=${days}`)
       .then(({ json }) => {
         const allRows = Array.isArray(json) ? json : [];
-        setTotalCount(allRows.length);
         const trimmed = allRows.slice(0, limit);
         setRows(trimmed);
         setLoading(false);
@@ -33,19 +33,34 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
       });
   }, [days]);
 
+  const handleClone = useCallback(
+    (id: number) => {
+      authFetchJson(`${API_BASE_URL}/leads/${id}/clone`, { method: 'POST' })
+        .then(({ json }) => {
+          if (json?.id) {
+            navigate(`/leads/${json.id}/edit`);
+          }
+        })
+        .catch((error) => {
+          console.error('Failed to clone lead', error);
+        });
+    },
+    [navigate]
+  );
+
   const columns = useMemo<GridColDef[]>(
     () => [
       {
         field: 'actions',
         headerName: '',
-        width: 80,
+        width: 110,
         sortable: false,
         renderCell: (params) => (
           <Box display="flex" alignItems="center" gap={0.5}>
             <IconButton
               size="small"
               component={RouterLink}
-              to={`/leads/${params.row.id}`}
+              to={`/leads/${params.row.id}/show`}
               aria-label="View lead"
               color="primary"
             >
@@ -59,6 +74,14 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
               color="primary"
             >
               <EditOutlinedIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              size="small"
+              aria-label="Clone lead"
+              color="primary"
+              onClick={() => handleClone(params.row.id)}
+            >
+              <ContentCopyOutlinedIcon fontSize="small" />
             </IconButton>
           </Box>
         )
@@ -87,7 +110,7 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
       },
       
     ],
-    []
+    [handleClone]
   );
 
   if (loading) {
@@ -100,6 +123,8 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         rows={rows}
         columns={columns}
         density="compact"
+        hideFooter
+        hideFooterPagination
         initialState={{
           sorting: {
             sortModel: [{ field: 'receivedAt', sort: 'desc' }]
@@ -107,11 +132,6 @@ const RecentLeadsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         }}
         disableRowSelectionOnClick
       />
-      {totalCount > rows.length && (
-        <Box sx={{ mt: 1, color: 'text.secondary', fontSize: 12 }}>
-          Showing {rows.length} of {totalCount} leads
-        </Box>
-      )}
     </Box>
   );
 });

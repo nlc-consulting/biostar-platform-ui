@@ -1,51 +1,47 @@
 import React from 'react';
-import { EditButton, Show, TabbedShowLayout, Tab, TopToolbar, WithRecord } from 'react-admin';
+import { Show, Tab, TabbedShowLayout, WithRecord } from 'react-admin';
 import { Container, Divider, Grid, Typography } from '@mui/material';
 import { formatCurrency, formatDate } from '../utils/helperUtils.ts';
 import FieldRow from '../components/FieldRow.tsx';
-import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
+import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
-import LeadConvertToProjectDialog from './components/LeadConvertToProjectDialog.tsx';
 
-const LeadShowActions = () => (
-  <TopToolbar>
-    <EditButton />
-    <LeadConvertToProjectDialog />
-  </TopToolbar>
-);
-
-const LeadShow: React.FC = () => {
+const ProjectShow: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <BreadcrumbsNav
         items={[
           { label: 'Dashboard', to: '/' },
-          { label: 'Leads', to: '/leads' },
+          { label: 'Projects', to: '/projects' },
           { label: 'View' }
         ]}
       />
-      <Show actions={<LeadShowActions />}>
+      <Show>
         <TabbedShowLayout syncWithLocation={false}>
           <Tab label="Details">
             <WithRecord
               render={(record) => (
                 <Container maxWidth="md">
                   <Typography variant="h6" gutterBottom>
-                    Contact Information
+                    Project Overview
                   </Typography>
                   <Grid container spacing={2}>
                     <Grid size={{ xs: 12, sm: 6 }}>
-                      <FieldRow label="First Name" value={record?.firstName} />
+                      <FieldRow label="Project Name" value={record?.name} />
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6 }}>
-                      <FieldRow label="Last Name" value={record?.lastName} />
+                      <FieldRow label="Status" value={record?.status} />
                     </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                      <FieldRow label="Phone" value={record?.phone} />
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                      <FieldRow label="Email" value={record?.email} />
+                    <Grid size={{ xs: 12 }}>
+                      <FieldRow
+                        label="Customer"
+                        value={
+                          record?.customer
+                            ? `${record.customer.firstName ?? ''} ${record.customer.lastName ?? ''}`.trim()
+                            : null
+                        }
+                      />
                     </Grid>
                   </Grid>
 
@@ -72,20 +68,11 @@ const LeadShow: React.FC = () => {
                   <Divider sx={{ my: 3 }} />
 
                   <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
-                    Lead Details
+                    Project Details
                   </Typography>
                   <Grid container spacing={2}>
                     <Grid size={{ xs: 12, sm: 6 }}>
-                      <FieldRow label="Lead Source" value={record?.leadSource} />
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                      <FieldRow label="Received" value={formatDate(record?.receivedAt)} />
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }}>
                       <FieldRow label="Type of Loss" value={record?.lossType} />
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                      <FieldRow label="Status" value={record?.status} />
                     </Grid>
                     <Grid size={{ xs: 12 }}>
                       <FieldRow label="Issue Description" value={record?.description} />
@@ -122,22 +109,13 @@ const LeadShow: React.FC = () => {
                       <FieldRow label="Primary Adjuster" value={record?.primaryAdjusterName} />
                     </Grid>
                     <Grid size={{ xs: 12, sm: 4 }}>
-                      <FieldRow
-                        label="Primary Adjuster Phone"
-                        value={record?.primaryAdjusterPhone}
-                      />
+                      <FieldRow label="Primary Adjuster Phone" value={record?.primaryAdjusterPhone} />
                     </Grid>
                     <Grid size={{ xs: 12, sm: 4 }}>
-                      <FieldRow
-                        label="Primary Adjuster Email"
-                        value={record?.primaryAdjusterEmail}
-                      />
+                      <FieldRow label="Primary Adjuster Email" value={record?.primaryAdjusterEmail} />
                     </Grid>
                     <Grid size={{ xs: 12, sm: 4 }}>
-                      <FieldRow
-                        label="Third-Party Adjuster"
-                        value={record?.thirdPartyAdjusterName}
-                      />
+                      <FieldRow label="Third-Party Adjuster" value={record?.thirdPartyAdjusterName} />
                     </Grid>
                     <Grid size={{ xs: 12, sm: 4 }}>
                       <FieldRow
@@ -184,12 +162,12 @@ const LeadShow: React.FC = () => {
           </Tab>
           <Tab label="Notes">
             <Container maxWidth="md">
-              <NoteListSection entityType="LEAD" hideTitle={true} />
+              <NoteListSection entityType="PROJECT" hideTitle={true} />
             </Container>
           </Tab>
           <Tab label="Documents">
             <Container maxWidth="md">
-              <DocumentListSection entityType="LEAD" hideTitle={true} />
+              <DocumentListSection entityType="PROJECT" hideTitle={true} />
             </Container>
           </Tab>
         </TabbedShowLayout>
@@ -198,4 +176,4 @@ const LeadShow: React.FC = () => {
   );
 };
 
-export default LeadShow;
+export default ProjectShow;

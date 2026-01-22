@@ -1,21 +1,29 @@
 import React from 'react';
-import { Datagrid, EditButton, List, TextField } from 'react-admin';
-import { Breadcrumbs, Container, Typography, Link as MuiLink } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Datagrid, DateField, EditButton, List, ShowButton, TextField, TextInput } from 'react-admin';
+import { Container } from '@mui/material';
+import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 
-const ProjectEdit: React.FC = () => {
+const projectFilters = [<TextInput source="q" label="Search" alwaysOn key="q" />];
+
+const ProjectList: React.FC = () => {
   return (
     <Container maxWidth="lg">
-      <Breadcrumbs sx={{ mt: 2 }}>
-        <MuiLink component={RouterLink} underline="hover" color="inherit" to="/">
-          Dashboard
-        </MuiLink>
-        <Typography color="text.primary">Projects</Typography>
-      </Breadcrumbs>
-      <List>
+      <BreadcrumbsNav
+        items={[
+          { label: 'Dashboard', to: '/' },
+          { label: 'Projects' }
+        ]}
+      />
+      <List filters={projectFilters} sort={{ field: 'createdAt', order: 'DESC' }}>
         <Datagrid rowClick="edit" bulkActionButtons={false}>
-          <TextField source="name" />
-          <TextField source="description" />
+          <TextField source="name" label="Project" />
+          <TextField source="status" label="Status" />
+          <TextField source="customer.firstName" label="Customer First" />
+          <TextField source="customer.lastName" label="Customer Last" />
+          <TextField source="lossType" label="Loss Type" />
+          <TextField source="propertyCity" label="City" />
+          <DateField source="createdAt" label="Created" />
+          <ShowButton />
           <EditButton />
         </Datagrid>
       </List>
@@ -23,4 +31,4 @@ const ProjectEdit: React.FC = () => {
   );
 };
 
-export default ProjectEdit;
+export default ProjectList;
