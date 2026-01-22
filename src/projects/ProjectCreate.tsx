@@ -15,6 +15,7 @@ import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
 import StateSelectInput from '../components/StateSelectInput.tsx';
 import { PROJECT_STATUS_CHOICES } from '../types/ProjectStatusChoices.ts';
+import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
 
 const ProjectCreate: React.FC = () => {
   return (
@@ -86,7 +87,12 @@ const ProjectCreate: React.FC = () => {
             </Typography>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, sm: 6 }}>
-                <TextInput source="lossType" label="Type of Loss" helperText={false} />
+                <SelectInput
+                  source="lossType"
+                  label="Type of Loss"
+                  choices={LOSS_TYPE_CHOICES}
+                  helperText={false}
+                />
               </Grid>
               <Grid size={{ xs: 12 }}>
                 <TextInput
