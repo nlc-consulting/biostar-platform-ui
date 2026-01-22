@@ -37,6 +37,8 @@ import CustomerList from './customers/CustomerList.tsx';
 import CustomerCreate from './customers/CustomerCreate.tsx';
 import CustomerEdit from './customers/CustomerEdit.tsx';
 import CustomerShow from './customers/CustomerShow.tsx';
+import ProjectList from './projects/ProjectList.tsx';
+import ProjectEdit from './projects/ProjectEdit.tsx';
 
 const theme = createTheme({
   ...defaultTheme,
@@ -138,5 +140,6 @@ export const AppAdmin = () => (
     />
     <Resource name="programs" list={ProgramList} edit={ProgramEdit} create={ProgramCreate} />
     <Resource name="users" list={UserList} create={UserCreate} />
+    <Resource name="projects" list={ProjectList} edit={ProjectEdit} />
   </Admin>
 );
