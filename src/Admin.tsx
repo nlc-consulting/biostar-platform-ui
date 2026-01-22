@@ -37,6 +37,10 @@ import LeadShow from './leads/LeadShow.tsx';
 import UserList from './users/UserList.tsx';
 import UserCreate from './users/UserCreate.tsx';
 import LoginPage from './LoginPage.tsx';
+import CustomerList from './customers/CustomerList.tsx';
+import CustomerCreate from './customers/CustomerCreate.tsx';
+import CustomerEdit from './customers/CustomerEdit.tsx';
+import CustomerShow from './customers/CustomerShow.tsx';
 
 const theme = createTheme({
   ...defaultTheme,
@@ -119,6 +123,13 @@ export const AppAdmin = () => (
     <Resource name="companies" list={CompanyList} edit={CompanyEdit} create={CompanyCreate} />
 
     <Resource name="leads" list={LeadList} edit={LeadEdit} create={LeadCreate} show={LeadShow} />
+    <Resource
+      name="customers"
+      list={CustomerList}
+      edit={CustomerEdit}
+      create={CustomerCreate}
+      show={CustomerShow}
+    />
     <Resource name="contacts" list={ContactList} edit={ContactEdit} create={ContactCreate} />
     <Resource name="groups" list={GroupList} edit={GroupEdit} create={GroupCreate} />
     <Resource name="group-events" edit={GroupEventEdit} />
