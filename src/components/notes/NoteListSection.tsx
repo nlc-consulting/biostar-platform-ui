@@ -21,7 +21,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { API_BASE_URL, authFetch } from '../../apiClient.ts';
 
-export type NoteEntityType = 'CONTACT' | 'GROUP' | 'OPPORTUNITY' | 'COMPANY' | 'LEAD' | 'CUSTOMER';
+export type NoteEntityType = 'CONTACT' | 'GROUP' | 'OPPORTUNITY' | 'COMPANY' | 'LEAD' | 'CUSTOMER' | 'PROJECT';
 
 export type INote = {
   id: number;
