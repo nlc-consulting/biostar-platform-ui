@@ -55,13 +55,9 @@ const LeadEdit: React.FC = () => {
 
               <Divider sx={{ my: 3 }} />
 
-              <Grid container alignItems="center" justifyContent="space-between" sx={{ mt: 3 }}>
-                <Grid>
-                  <Typography variant="h6" gutterBottom>
-                    Property Address
-                  </Typography>
-                </Grid>
-              </Grid>
+              <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
+                Property Address
+              </Typography>
               <Grid container spacing={2}>
                 <Grid size={{ xs: 12 }}>
                   <TextInput source="propertyStreet" label="Street" helperText={false} fullWidth />
