@@ -16,6 +16,7 @@ import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
 import { LEAD_SOURCE_CHOICES } from '../types/LeadSourceChoices.ts';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
+import LeadCustomerSelect from './components/LeadCustomerSelect.tsx';
 
 const LeadCreate: React.FC = () => {
   return (
@@ -40,6 +41,9 @@ const LeadCreate: React.FC = () => {
               Contact Information
             </Typography>
             <Grid container spacing={2}>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <LeadCustomerSelect />
+              </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
                 <TextInput source="firstName" label="First Name" helperText={false} />
               </Grid>
