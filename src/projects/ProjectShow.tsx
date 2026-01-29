@@ -6,6 +6,7 @@ import FieldRow from '../components/FieldRow.tsx';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
+import AuditLogSection from '../components/audit/AuditLogSection.tsx';
 
 const ProjectShow: React.FC = () => {
   return (
@@ -168,6 +169,11 @@ const ProjectShow: React.FC = () => {
           <Tab label="Documents">
             <Container maxWidth="md">
               <DocumentListSection entityType="PROJECT" hideTitle={true} />
+            </Container>
+          </Tab>
+          <Tab label="Activity">
+            <Container maxWidth="md">
+              <AuditLogSection entityType="PROJECT" />
             </Container>
           </Tab>
         </TabbedShowLayout>
