@@ -1,4 +1,4 @@
-import { Box, CircularProgress, IconButton, Link as MuiLink } from '@mui/material';
+import { Box, Chip, CircularProgress, IconButton, Link as MuiLink } from '@mui/material';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { API_BASE_URL, authFetchJson } from '../../apiClient.ts';
@@ -7,6 +7,7 @@ import type { ProjectRow } from '../../types/ProjectRow.ts';
 import { formatDate } from '../../utils/helperUtils.ts';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { getLossTypeColor } from '../../types/LossTypeColors.ts';
 
 interface Props {
   days?: number;
@@ -77,7 +78,22 @@ const RecentProjectsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         valueGetter: (_, row) => `${row.customer.firstName} ${row.customer.lastName}`.trim()
       },
       { field: 'status', headerName: 'Status', width: 120 },
-      { field: 'lossType', headerName: 'Loss Type', width: 140 },
+      {
+        field: 'lossType',
+        headerName: 'Loss Type',
+        width: 150,
+        renderCell: (params) => {
+          const value = params.value as string | null;
+          if (!value) return '-';
+          return (
+            <Chip
+              size="small"
+              label={value}
+              sx={{ bgcolor: getLossTypeColor(value), color: '#fff' }}
+            />
+          );
+        }
+      },
       { field: 'notesCount', headerName: 'Notes', width: 90 },
       { field: 'documentsCount', headerName: 'Docs', width: 90 },
       { field: 'propertyCity', headerName: 'City', width: 140 },
