@@ -19,6 +19,7 @@ import { PROJECT_STATUS_CHOICES } from '../types/ProjectStatusChoices.ts';
 import { NoteListSection } from '../components/notes/NoteListSection.tsx';
 import { DocumentListSection } from '../components/documents/DocumentListSection.tsx';
 import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
+import AuditLogSection from '../components/audit/AuditLogSection.tsx';
 
 const ProjectEdit: React.FC = () => {
   return (
@@ -215,6 +216,11 @@ const ProjectEdit: React.FC = () => {
           <FormTab label="Documents">
             <Container maxWidth="md">
               <DocumentListSection entityType="PROJECT" hideTitle={true} />
+            </Container>
+          </FormTab>
+          <FormTab label="Activity">
+            <Container maxWidth="md">
+              <AuditLogSection entityType="PROJECT" />
             </Container>
           </FormTab>
         </TabbedForm>
