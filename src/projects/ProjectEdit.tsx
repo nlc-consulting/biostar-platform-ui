@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  AutocompleteInput,
   BooleanInput,
   DateInput,
   Edit,
@@ -10,7 +11,6 @@ import {
   TabbedForm,
   TextInput
 } from 'react-admin';
-import { AutocompleteInput } from 'react-admin';
 import { Container, Divider, Grid, Typography } from '@mui/material';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
@@ -43,7 +43,7 @@ const ProjectEdit: React.FC = () => {
                   <TextInput source="name" label="Project Name" helperText={false} />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6 }}>
-                  <SelectInput
+                  <AutocompleteInput
                     source="status"
                     label="Status"
                     choices={PROJECT_STATUS_CHOICES}
