@@ -5,13 +5,15 @@ import {
   DateField,
   DeleteButton,
   EditButton,
+  FunctionField,
   List,
   ShowButton,
   TextField,
   TextInput
 } from 'react-admin';
-import { Container } from '@mui/material';
+import { Chip, Container } from '@mui/material';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
+import { getLossTypeColor } from '../types/LossTypeColors.ts';
 
 const leadFilters = [<TextInput source="q" label="Search" alwaysOn key="q" />];
 
@@ -30,6 +32,20 @@ const LeadList: React.FC = () => {
           <TextField source="lastName" label="Last" />
           <TextField source="phone" label="Phone" />
           <TextField source="email" label="Email" />
+          <FunctionField
+            label="Loss Type"
+            render={(record) => {
+              const value = record?.lossType ?? '';
+              if (!value) return '-';
+              return (
+                <Chip
+                  size="small"
+                  label={value}
+                  sx={{ bgcolor: getLossTypeColor(value), color: '#fff' }}
+                />
+              );
+            }}
+          />
           <TextField source="status" label="Status" />
           <BooleanField source="isEmergency" label="Emergency" />
           <DateField source="receivedAt" label="Received" />
