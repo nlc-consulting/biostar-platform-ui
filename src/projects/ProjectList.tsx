@@ -4,16 +4,16 @@ import {
   Datagrid,
   DateField,
   EditButton,
+  FunctionField,
   List,
   ShowButton,
-  FunctionField,
   TextField,
   TextInput,
   SelectInput,
   TopToolbar,
   useListContext
 } from 'react-admin';
-import { Chip, Container, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Box, Chip, Container, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { getLossTypeColor } from '../types/LossTypeColors.ts';
 import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
@@ -99,8 +99,25 @@ const ProjectList: React.FC = () => {
           />
           <TextField source="propertyCity" label="City" />
           <DateField source="createdAt" label="Created" />
-          <ShowButton />
-          <EditButton />
+          <FunctionField
+            label="Actions"
+            render={(record) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <ShowButton
+                  record={record}
+                  label=""
+                  aria-label="View project"
+                  sx={{ minWidth: 0, p: 0.5 }}
+                />
+                <EditButton
+                  record={record}
+                  label=""
+                  aria-label="Edit project"
+                  sx={{ minWidth: 0, p: 0.5 }}
+                />
+              </Box>
+            )}
+          />
         </Datagrid>
       </List>
     </Container>

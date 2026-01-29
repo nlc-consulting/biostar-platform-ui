@@ -11,7 +11,7 @@ import {
   TextField,
   TextInput
 } from 'react-admin';
-import { Chip, Container } from '@mui/material';
+import { Box, Chip, Container } from '@mui/material';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { getLossTypeColor } from '../types/LossTypeColors.ts';
 
@@ -28,10 +28,11 @@ const LeadList: React.FC = () => {
       />
       <List filters={leadFilters} sort={{ field: 'createdAt', order: 'DESC' }}>
         <Datagrid rowClick="show" bulkActionButtons={false}>
-          <TextField source="firstName" label="First" />
-          <TextField source="lastName" label="Last" />
-          <TextField source="phone" label="Phone" />
-          <TextField source="email" label="Email" />
+          <DateField source="receivedAt" label="Received" />
+          <BooleanField source="isEmergency" label="Emergency" />
+          <TextField source="firstName" label="First Name" />
+          <TextField source="lastName" label="Last Name" />
+          <TextField source="leadSource" label="Source" />
           <FunctionField
             label="Loss Type"
             render={(record) => {
@@ -47,11 +48,32 @@ const LeadList: React.FC = () => {
             }}
           />
           <TextField source="status" label="Status" />
-          <BooleanField source="isEmergency" label="Emergency" />
-          <DateField source="receivedAt" label="Received" />
-          <ShowButton />
-          <EditButton />
-          <DeleteButton mutationMode="pessimistic" />
+          <FunctionField
+            label="Actions"
+            render={(record) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <ShowButton
+                  record={record}
+                  label=""
+                  aria-label="View lead"
+                  sx={{ minWidth: 0, p: 0.5 }}
+                />
+                <EditButton
+                  record={record}
+                  label=""
+                  aria-label="Edit lead"
+                  sx={{ minWidth: 0, p: 0.5 }}
+                />
+                <DeleteButton
+                  record={record}
+                  label=""
+                  aria-label="Delete lead"
+                  mutationMode="pessimistic"
+                  sx={{ minWidth: 0, p: 0.5 }}
+                />
+              </Box>
+            )}
+          />
         </Datagrid>
       </List>
     </Container>

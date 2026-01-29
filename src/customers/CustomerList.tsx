@@ -3,12 +3,13 @@ import {
   Datagrid,
   DeleteButton,
   EditButton,
+  FunctionField,
   List,
   ShowButton,
   TextField,
   TextInput
 } from 'react-admin';
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 
 const customerFilters = [<TextInput source="q" label="Search" alwaysOn key="q" />];
@@ -30,9 +31,32 @@ const CustomerList: React.FC = () => {
           <TextField source="primaryEmail" label="Email" />
           <TextField source="primaryCity" label="City" />
           <TextField source="primaryState" label="State" />
-          <ShowButton />
-          <EditButton />
-          <DeleteButton mutationMode="pessimistic" />
+          <FunctionField
+            label="Actions"
+            render={(record) => (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <ShowButton
+                  record={record}
+                  label=""
+                  aria-label="View customer"
+                  sx={{ minWidth: 0, p: 0.5 }}
+                />
+                <EditButton
+                  record={record}
+                  label=""
+                  aria-label="Edit customer"
+                  sx={{ minWidth: 0, p: 0.5 }}
+                />
+                <DeleteButton
+                  record={record}
+                  label=""
+                  aria-label="Delete customer"
+                  mutationMode="pessimistic"
+                  sx={{ minWidth: 0, p: 0.5 }}
+                />
+              </Box>
+            )}
+          />
         </Datagrid>
       </List>
     </Container>
