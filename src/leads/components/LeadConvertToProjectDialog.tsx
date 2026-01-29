@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   useDataProvider,
   useNotify,
@@ -60,7 +60,9 @@ const LeadConvertToProjectDialog: React.FC = () => {
   const [options, setOptions] = useState<CustomerOption[]>([]);
   const [selectedCustomer, setSelectedCustomer] = useState<CustomerOption | null>(null);
   const [customerForm, setCustomerForm] = useState<CustomerForm>(emptyCustomerForm);
+  const [copyLeadDetails, setCopyLeadDetails] = useState(true);
   const [saving, setSaving] = useState(false);
+  const prefilledCustomer = useRef(false);
 
   useEffect(() => {
     if (!open || createNew) return;
@@ -74,12 +76,29 @@ const LeadConvertToProjectDialog: React.FC = () => {
       .catch(() => setOptions([]));
   }, [createNew, customerQuery, dataProvider, open]);
 
+  useEffect(() => {
+    if (!open || !createNew || !lead || prefilledCustomer.current) return;
+    setCustomerForm({
+      firstName: lead.firstName ?? '',
+      lastName: lead.lastName ?? '',
+      primaryEmail: lead.email ?? '',
+      primaryPhone: lead.phone ?? '',
+      primaryStreet: lead.propertyStreet ?? '',
+      primaryCity: lead.propertyCity ?? '',
+      primaryState: lead.propertyState ?? '',
+      primaryZip: lead.propertyZip ?? ''
+    });
+    prefilledCustomer.current = true;
+  }, [createNew, lead, open]);
+
   const handleClose = () => {
     setOpen(false);
     setCreateNew(false);
     setCustomerQuery('');
     setSelectedCustomer(null);
     setCustomerForm(emptyCustomerForm);
+    setCopyLeadDetails(true);
+    prefilledCustomer.current = false;
   };
 
   const handleConvert = async () => {
@@ -93,9 +112,10 @@ const LeadConvertToProjectDialog: React.FC = () => {
       return;
     }
 
-    const payload = createNew
-      ? { customer: { ...customerForm } }
-      : { customerId: selectedCustomer?.id };
+    const payload = {
+      ...(createNew ? { customer: { ...customerForm } } : { customerId: selectedCustomer?.id }),
+      copyLeadDetails
+    };
 
     setSaving(true);
     try {
@@ -135,10 +155,27 @@ const LeadConvertToProjectDialog: React.FC = () => {
               control={
                 <Switch
                   checked={createNew}
-                  onChange={(event) => setCreateNew(event.target.checked)}
+                  onChange={(event) => {
+                    const next = event.target.checked;
+                    setCreateNew(next);
+                    if (!next) {
+                      prefilledCustomer.current = false;
+                    }
+                  }}
                 />
               }
               label="Create new customer"
+            />
+          </Box>
+          <Box sx={{ mt: 1 }}>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={copyLeadDetails}
+                  onChange={(event) => setCopyLeadDetails(event.target.checked)}
+                />
+              }
+              label="Copy lead details into project"
             />
           </Box>
 
