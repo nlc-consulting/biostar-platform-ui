@@ -7,7 +7,6 @@ import {
   FormTab,
   NumberInput,
   ReferenceInput,
-  SelectInput,
   TabbedForm,
   TextInput
 } from 'react-admin';
