@@ -5,11 +5,11 @@ import {
   Create,
   DateInput,
   NumberInput,
-  ReferenceInput, SelectInput,
+  ReferenceInput,
+  SelectInput,
   SimpleForm,
   TextInput
 } from 'react-admin';
-
 import { Container, Divider, Grid, Typography } from '@mui/material';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { FloatingToolbar } from '../components/FloatingToolbar.tsx';
