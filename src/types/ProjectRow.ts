@@ -4,6 +4,7 @@ export type ProjectRow = {
   status: string;
   lossType: string | null;
   propertyCity: string | null;
+  isEmergency: boolean;
   createdAt: string;
   notesCount: number;
   documentsCount: number;
