@@ -64,3 +64,11 @@ export function formatCurrency(value?: number | null): string {
     maximumFractionDigits: 2,
   }).format(value);
 }
+
+export function formatStatus(value?: string | null): string {
+  if (!value) return '-';
+  return value
+    .toLowerCase()
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, (match) => match.toUpperCase());
+}
