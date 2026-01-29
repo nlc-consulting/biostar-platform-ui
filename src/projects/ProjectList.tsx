@@ -4,6 +4,7 @@ import {
   Datagrid,
   DateField,
   EditButton,
+  BooleanField,
   FunctionField,
   List,
   ShowButton,
@@ -16,6 +17,7 @@ import {
 import { Box, Chip, Container, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import BreadcrumbsNav from '../components/BreadcrumbsNav.tsx';
 import { getLossTypeColor } from '../types/LossTypeColors.ts';
+import { formatStatus } from '../utils/helperUtils.ts';
 import { LOSS_TYPE_CHOICES } from '../types/LossTypeChoices.ts';
 
 const projectFilters = [
@@ -78,7 +80,11 @@ const ProjectList: React.FC = () => {
       >
         <Datagrid rowClick="show" bulkActionButtons={false}>
           <TextField source="name" label="Project" />
-          <TextField source="status" label="Status" />
+          <FunctionField
+            label="Status"
+            render={(record) => formatStatus(record?.status)}
+          />
+          <BooleanField source="isEmergency" label="Emergency" />
           <TextField source="customer.firstName" label="Customer First" />
           <TextField source="customer.lastName" label="Customer Last" />
           <FunctionField

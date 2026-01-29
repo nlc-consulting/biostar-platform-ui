@@ -4,7 +4,7 @@ import { memo, useEffect, useMemo, useState } from 'react';
 import { API_BASE_URL, authFetchJson } from '../../apiClient.ts';
 import { Link as RouterLink } from 'react-router-dom';
 import type { ProjectRow } from '../../types/ProjectRow.ts';
-import { formatDate } from '../../utils/helperUtils.ts';
+import { formatDate, formatStatus } from '../../utils/helperUtils.ts';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { getLossTypeColor } from '../../types/LossTypeColors.ts';
@@ -77,7 +77,18 @@ const RecentProjectsReport = memo<Props>(({ days = 7, limit = 10 }) => {
         width: 180,
         valueGetter: (_, row) => `${row.customer.firstName} ${row.customer.lastName}`.trim()
       },
-      { field: 'status', headerName: 'Status', width: 120 },
+      {
+        field: 'status',
+        headerName: 'Status',
+        width: 130,
+        valueGetter: (_, row) => formatStatus(row.status)
+      },
+      {
+        field: 'isEmergency',
+        headerName: 'Emergency',
+        width: 110,
+        valueGetter: (_, row) => (row.isEmergency ? 'Yes' : 'No')
+      },
       {
         field: 'lossType',
         headerName: 'Loss Type',
